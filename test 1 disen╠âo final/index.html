@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HealthyFit</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="icon" href="img/nitsha icono.png">
+    </head>
+    <body>
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <a href="index.html" class="logo-container">
+                <div class="logo-icon">HF</div>
+                <div class="logo-text-group">
+                    <div class="logo-text">Healthy<span>Fit</span></div>
+                    <div class="logo-subtitle-tag">SPORT & FITNESS</div>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="ropa.html">Ropa</a></li>
+                <li><a href="articulos.html">Artículos</a></li>
+                <li><a href="tips.html">Tips</a></li>
+                <li><a href="sedes.html">Sedes</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <!-- BOTÓN DEL CARRITO ACTUALIZADO CON ÍCONO SVG -->
+            <button class="cart-btn" onclick="toggleCartModal()">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span>Carrito</span>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+        </nav>
+
+          <!-- HERO + ARTÍCULOS: FONDO CONTINUO -->
+        <div class="home-background">
+
+        <!-- HERO SECTION -->
+        <section class="hero-container">
+            <div class="hero-brand-card">
+                <div class="brand-card-icon">HF</div>
+                <div class="brand-card-text">Healthy<span>Fit</span></div>
+                <div class="brand-card-slogan">TU ALIADO DEPORTIVO</div>
+            </div>
+
+            <!-- CONTENIDO HERO ACTUALIZADO -->
+            <div class="hero-content">
+                <span class="hero-badge">EQUIPAMIENTO PARA</span>
+                <h1 class="hero-title">
+                    UNA VIDA FIT
+                    <span>MÁS SALUDABLE</span>
+                </h1>
+                <p class="hero-description">
+                    Productos de calidad para tu entrenamiento y alimentación destinadas al gimnasio y/o la comodidad de
+                    tu hogar.
+                </p>
+                <a href="articulos.html" class="btn-primary">Ver artículos &rarr;</a>
+            </div>
+        </section>
+
+        <!-- TARJETA SUPERPUESTA DE ARTÍCULOS (SEPARADA DE HERO) -->
+        <div class="home-articles-overlay">
+            <div class="overlay-header">
+                <div>
+                    <span class="overlay-tag">-- NUESTROS ARTÍCULOS</span>
+                    <h2 class="overlay-title">Lo que necesitas para avanzar</h2>
+                </div>
+                <a href="articulos.html" class="link-more">Ver todos &rarr;</a>
+            </div>
+            <div class="overlay-grid">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img
+                            src="img/rollos.jpg"
+                            alt="Yoga Mat"
+                            class="product-img"
+                        />
+                    </div>
+                    <div class="product-info-wrapper">
+                        <div class="product-title">Yoga Mat Anti-slip</div>
+                        <div class="product-price">S/ 25.30</div>
+                    </div>
+                    <button class="btn-add-full" onclick="addToCart('Yoga Mat Anti-slip', 25.3)">+ Agregar</button>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="img/9.jpeg" alt="Banda de Resistencia" class="product-img" />
+                    </div>
+                    <div class="product-info-wrapper">
+                        <div class="product-title">Banda de resistencia de tela Sunight para desarrollo muscular</div>
+                        <div class="product-price">S/ 34.90</div>
+                    </div>
+                    <button class="btn-add-full" onclick="addToCart('Banda de Resistencia', 34.9)">+ Agregar</button>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="img/12.jpeg" alt="Muñequeras" class="product-img" />
+                    </div>
+                    <div class="product-info-wrapper">
+                        <div class="product-title">Muñequeras para levantamiento de pesas o Powerlifting</div>
+                        <div class="product-price">S/ 45.60</div>
+                    </div>
+                    <button class="btn-add-full" onclick="addToCart('Muñequeras Powerlifting', 45.6)">+ Agregar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL CARRITO -->
+        <div class="modal-backdrop" id="cartModal">
+            <div class="cart-drawer">
+                <div class="cart-header">
+                    <h3>Tu Carrito</h3>
+                    <button class="close-btn" onclick="toggleCartModal()">&times;</button>
+                </div>
+                <div class="cart-items-list" id="cart-items-container"></div>
+                <div style="border-top: 1px solid #ccc; padding-top: 1rem">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-weight: bold">
+                        <span>Total:</span>
+                        <span id="cart-total-price">S/ 0.00</span>
+                    </div>
+                    <button class="btn-primary" onclick="checkout()" style="width: 100%; justify-content: center">
+                        Procesar Compra
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer>&copy; 2026 HealthyFit. Todos los derechos reservados.</footer>
+        <!-- CONTENEDOR TOAST NOTIFICACIÓN -->
+        <div id="toast" class="toast"></div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
